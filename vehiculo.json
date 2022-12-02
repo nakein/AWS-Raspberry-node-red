@@ -1,0 +1,517 @@
+[
+    {
+        "id": "0860af4a74c5315e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "43d61793fc263f51",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7c598df65f35a66f",
+        "type": "remote-xy-dashboard",
+        "name": "remote-control",
+        "port": "6377",
+        "config": "\n//////////////////////////////////////////////\n//        RemoteXY include library          //\n//////////////////////////////////////////////\n\n// RemoteXY select connection mode and include library \n#define REMOTEXY_MODE__SOFTSERIAL\n#include <SoftwareSerial.h>\n\n#include <RemoteXY.h>\n\n// RemoteXY connection settings \n#define REMOTEXY_SERIAL_RX 2\n#define REMOTEXY_SERIAL_TX 3\n#define REMOTEXY_SERIAL_SPEED 9600\n\n\n// RemoteXY configurate  \n#pragma pack(push, 1)\nuint8_t RemoteXY_CONF[] =   // 45 bytes\n  { 255,5,0,0,0,38,0,16,31,0,10,48,9,4,15,15,4,26,31,79,\n  78,0,31,79,70,70,0,5,20,63,30,30,30,2,26,31,5,0,11,29,\n  30,30,2,26,31 };\n  \n// this structure defines all the variables and events of your control interface \nstruct {\n\n    // input variables\n  uint8_t switch_1; // =1 if state is ON, else =0 \n  int8_t joystick_1_x; // from -100 to 100  \n  int8_t joystick_1_y; // from -100 to 100  \n  int8_t joystick_2_x; // from -100 to 100  \n  int8_t joystick_2_y; // from -100 to 100  \n\n    // other variable\n  uint8_t connect_flag;  // =1 if wire connected, else =0 \n\n} RemoteXY;\n#pragma pack(pop)\n\n/////////////////////////////////////////////\n//           END RemoteXY include          //\n/////////////////////////////////////////////\n\n\n\nvoid setup() \n{\n  RemoteXY_Init (); \n  \n  \n  // TODO you setup code\n  \n}\n\nvoid loop() \n{ \n  RemoteXY_Handler ();\n  \n  \n  // TODO you loop code\n  // use the RemoteXY structure for data transfer\n  // do not call delay() \n\n\n}"
+    },
+    {
+        "id": "27f5dbb0ac2da7b3",
+        "type": "rpi-gpio out",
+        "z": "0860af4a74c5315e",
+        "name": "Avanzar",
+        "pin": "21",
+        "set": false,
+        "level": "1",
+        "freq": "100",
+        "out": "pwm",
+        "bcm": true,
+        "x": 1320,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3707003004149290",
+        "type": "remote-xy in",
+        "z": "0860af4a74c5315e",
+        "name": "joystick_2_y",
+        "dashboard": "7c598df65f35a66f",
+        "index": "4",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "81da33d010749fe9"
+            ]
+        ]
+    },
+    {
+        "id": "81da33d010749fe9",
+        "type": "function",
+        "z": "0860af4a74c5315e",
+        "name": "motores_encendidos",
+        "func": "if(flow.get('motores')){\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 240,
+        "wires": [
+            [
+                "c0413b0d3a709bed"
+            ]
+        ]
+    },
+    {
+        "id": "c0413b0d3a709bed",
+        "type": "switch",
+        "z": "0860af4a74c5315e",
+        "name": "switch signo",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 240,
+        "wires": [
+            [
+                "dc22ecf214f7f1d2",
+                "b6e4afedbbbbc818"
+            ],
+            [
+                "a3029eaf93de7bbc"
+            ]
+        ]
+    },
+    {
+        "id": "b2f126a5de0d0b1c",
+        "type": "rpi-gpio out",
+        "z": "0860af4a74c5315e",
+        "name": "Retroceder",
+        "pin": "20",
+        "set": false,
+        "level": "0",
+        "freq": "100",
+        "out": "pwm",
+        "bcm": true,
+        "x": 1330,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "06d7b2215b3ae90a",
+        "type": "remote-xy in",
+        "z": "0860af4a74c5315e",
+        "name": "switch_1",
+        "dashboard": "7c598df65f35a66f",
+        "index": "0",
+        "x": 120,
+        "y": 40,
+        "wires": [
+            [
+                "99bba9eb685de639"
+            ]
+        ]
+    },
+    {
+        "id": "99bba9eb685de639",
+        "type": "change",
+        "z": "0860af4a74c5315e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "motores",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 40,
+        "wires": [
+            [
+                "3476bfdebc1f3099"
+            ]
+        ]
+    },
+    {
+        "id": "dc22ecf214f7f1d2",
+        "type": "function",
+        "z": "0860af4a74c5315e",
+        "name": "invertir y dividir",
+        "func": "msg.payload = parseInt(msg.payload) * (-1/2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 140,
+        "wires": [
+            [
+                "1a8b3135400e3bcf"
+            ]
+        ]
+    },
+    {
+        "id": "3476bfdebc1f3099",
+        "type": "function",
+        "z": "0860af4a74c5315e",
+        "name": "apagar",
+        "func": "if(!msg.payload){\n    msg.payload = 0;\n    return msg;    \n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 40,
+        "wires": [
+            [
+                "880720f7168dd503",
+                "1a8b3135400e3bcf"
+            ]
+        ]
+    },
+    {
+        "id": "7e4542f0016da95d",
+        "type": "change",
+        "z": "0860af4a74c5315e",
+        "name": "apagar",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 200,
+        "wires": [
+            [
+                "1a8b3135400e3bcf"
+            ]
+        ]
+    },
+    {
+        "id": "b6e4afedbbbbc818",
+        "type": "change",
+        "z": "0860af4a74c5315e",
+        "name": "apagar",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 260,
+        "wires": [
+            [
+                "880720f7168dd503"
+            ]
+        ]
+    },
+    {
+        "id": "a3029eaf93de7bbc",
+        "type": "function",
+        "z": "0860af4a74c5315e",
+        "name": "if bloqueado y dividir",
+        "func": "if(flow.get(\"bloqueo\")){\n    msg.payload = msg.payload / 2;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 300,
+        "wires": [
+            [
+                "7e4542f0016da95d",
+                "880720f7168dd503"
+            ]
+        ]
+    },
+    {
+        "id": "54348fb8c5a114ee",
+        "type": "rpi-srf",
+        "z": "0860af4a74c5315e",
+        "name": "",
+        "topic": "SRF",
+        "pulse": "0.1",
+        "pins": "16,18",
+        "precision": "0",
+        "x": 110,
+        "y": 380,
+        "wires": [
+            [
+                "c88667f6b741119c"
+            ]
+        ]
+    },
+    {
+        "id": "e1d6a09e055c5206",
+        "type": "change",
+        "z": "0860af4a74c5315e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "bloqueo",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 380,
+        "wires": [
+            [
+                "4a8da7caed08a6b7",
+                "7a09442923a32e52"
+            ]
+        ]
+    },
+    {
+        "id": "c88667f6b741119c",
+        "type": "function",
+        "z": "0860af4a74c5315e",
+        "name": "if dist > 35",
+        "func": "msg.payload = parseInt(msg.payload) > 35;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "e1d6a09e055c5206"
+            ]
+        ]
+    },
+    {
+        "id": "4a8da7caed08a6b7",
+        "type": "function",
+        "z": "0860af4a74c5315e",
+        "name": "apagar",
+        "func": "if(!msg.payload){\n    msg.payload = 0;\n    return msg;    \n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 380,
+        "wires": [
+            [
+                "880720f7168dd503"
+            ]
+        ]
+    },
+    {
+        "id": "7af3704f64aba9f8",
+        "type": "rpi-gpio out",
+        "z": "0860af4a74c5315e",
+        "name": "LED rojo",
+        "pin": "11",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1320,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "7a09442923a32e52",
+        "type": "function",
+        "z": "0860af4a74c5315e",
+        "name": "invertir",
+        "func": "msg.payload = !msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 460,
+        "wires": [
+            [
+                "7af3704f64aba9f8"
+            ]
+        ]
+    },
+    {
+        "id": "880720f7168dd503",
+        "type": "function",
+        "z": "0860af4a74c5315e",
+        "name": "pass",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 300,
+        "wires": [
+            [
+                "27f5dbb0ac2da7b3",
+                "6e591bb1c1aa3d88"
+            ]
+        ]
+    },
+    {
+        "id": "6e591bb1c1aa3d88",
+        "type": "rpi-gpio out",
+        "z": "0860af4a74c5315e",
+        "name": "LED verde",
+        "pin": "10",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "pwm",
+        "bcm": true,
+        "x": 1330,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "1a8b3135400e3bcf",
+        "type": "function",
+        "z": "0860af4a74c5315e",
+        "name": "pass",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 140,
+        "wires": [
+            [
+                "b2f126a5de0d0b1c",
+                "ad086b1fe0c615dc"
+            ]
+        ]
+    },
+    {
+        "id": "ad086b1fe0c615dc",
+        "type": "rpi-gpio out",
+        "z": "0860af4a74c5315e",
+        "name": "LED amarillo",
+        "pin": "9",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "pwm",
+        "bcm": true,
+        "x": 1330,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "6793708c4e32430f",
+        "type": "pi-gpiod out",
+        "z": "43d61793fc263f51",
+        "name": "",
+        "host": "localhost",
+        "port": 8888,
+        "pin": "14",
+        "set": "",
+        "level": "0",
+        "out": "ser",
+        "sermin": "1000",
+        "sermax": "2000",
+        "freq": "800",
+        "x": 1000,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "87fe26bfabadb1de",
+        "type": "remote-xy in",
+        "z": "43d61793fc263f51",
+        "name": "joystick_1_x",
+        "dashboard": "7c598df65f35a66f",
+        "index": "1",
+        "x": 570,
+        "y": 340,
+        "wires": [
+            [
+                "0befc67a0fdf7b2f"
+            ]
+        ]
+    },
+    {
+        "id": "0befc67a0fdf7b2f",
+        "type": "function",
+        "z": "43d61793fc263f51",
+        "name": "traducción",
+        "func": "msg.payload = (msg.payload + 100)/2;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 340,
+        "wires": [
+            [
+                "6793708c4e32430f"
+            ]
+        ]
+    }
+]

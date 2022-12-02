@@ -1,0 +1,1644 @@
+[
+    {
+        "id": "68855751444df877",
+        "type": "tab",
+        "label": "Control Casa",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c9b3b4fef2d764b2",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/A/Output/bool/Roller_Shades_1_(Up)",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 650,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "0e96bc7f325efcbc",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/A/Input/bool/Light_Switch_Dimmer_1_(Up)",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 520,
+        "wires": [
+            [
+                "c9b3b4fef2d764b2"
+            ]
+        ]
+    },
+    {
+        "id": "2175406b11c1dabe",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/A/Output/bool/Roller_Shades_1_(Down)",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 660,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "48910c67e18ac06c",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/A/Input/bool/Light_Switch_Dimmer_1_(Down)",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 580,
+        "wires": [
+            [
+                "2175406b11c1dabe"
+            ]
+        ]
+    },
+    {
+        "id": "1c0e99a93ef66b8b",
+        "type": "ui_switch",
+        "z": "68855751444df877",
+        "name": "",
+        "label": "Vigilancia total",
+        "tooltip": "",
+        "group": "c0511ca01e811917",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 220,
+        "y": 720,
+        "wires": [
+            [
+                "dd65a5ab2b933756"
+            ]
+        ]
+    },
+    {
+        "id": "1644e651e0db0f5a",
+        "type": "ui_switch",
+        "z": "68855751444df877",
+        "name": "",
+        "label": "Camino baño",
+        "tooltip": "",
+        "group": "356098111e9647df",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 230,
+        "y": 960,
+        "wires": [
+            [
+                "5b0652c1e5d172f6",
+                "06d1da8351ecb8bb",
+                "e8c8b4f87fec9f04",
+                "f7d158b2fc8bc026",
+                "2a7493046d205a9a"
+            ]
+        ]
+    },
+    {
+        "id": "59f7267fc3762788",
+        "type": "ui_switch",
+        "z": "68855751444df877",
+        "name": "",
+        "label": "Despertar habitación",
+        "tooltip": "",
+        "group": "17067b2c97584bc7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "despertar_padres",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 220,
+        "y": 1120,
+        "wires": [
+            [
+                "0aa69c467910a3be",
+                "c9b8a2f4d8adcdad",
+                "e48d72e55ef74d5c"
+            ]
+        ],
+        "info": "Opción Despertar\r\nUna vez activado y con una hora ingresada,\r\npermite que se despierte a esa hora,\r\nrealizando la siguiente rutina:\r\n - se abren las persianas\r\n - se prenden y apagan las luces cada \r\n 5 segundos\r\n - Se sube la temp hasta 35°\r\n Se repite esto hasta que se detecta que\r\n la puerta fue abierta y hubo movimiento\r\n en la habitacion"
+    },
+    {
+        "id": "5b0652c1e5d172f6",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/I/Output/bool/Lights_1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 600,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "06d1da8351ecb8bb",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/J/Output/bool/Lights",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 600,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "e8c8b4f87fec9f04",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/H/Output/bool/Lights",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 600,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "f7d158b2fc8bc026",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/I/Output/bool/Lights_2",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 600,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "0aa69c467910a3be",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/L/Output/bool/Roller_Shades_(Up)",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 580,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "77a637eef287110a",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/L/Output/bool/Lights",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 840,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "1a0577466d591972",
+        "type": "inject",
+        "z": "68855751444df877",
+        "name": "titileo_off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "titilar_luces",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 230,
+        "y": 1280,
+        "wires": [
+            [
+                "90861f3d5d50d133"
+            ]
+        ]
+    },
+    {
+        "id": "a02ab20d215d421b",
+        "type": "inject",
+        "z": "68855751444df877",
+        "name": "titileo_on",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "titilar_luces",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 230,
+        "y": 1320,
+        "wires": [
+            [
+                "90861f3d5d50d133"
+            ]
+        ]
+    },
+    {
+        "id": "9ba58fd834740cef",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/O/Output/bool/Siren",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 840,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "c9b8a2f4d8adcdad",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "estado_despertar",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90861f3d5d50d133",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion_titileo",
+        "func": "if(!global.get('estado_despertar')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1280,
+        "wires": [
+            [
+                "77a637eef287110a",
+                "9ba58fd834740cef"
+            ]
+        ]
+    },
+    {
+        "id": "dd65a5ab2b933756",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "estado_vigilancia_total",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3bd533d7cf048f34",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/B/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1540,
+        "wires": [
+            [
+                "c81806b31950afc6"
+            ]
+        ]
+    },
+    {
+        "id": "ba8282ee370fed13",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1580,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "aef0e257d5111d4f"
+            ]
+        ]
+    },
+    {
+        "id": "f4481ff918b52732",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1620,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "b55830e766b19f9b"
+            ]
+        ]
+    },
+    {
+        "id": "7d096b9d21f7a638",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1660,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "6f9fe4215575e8b6"
+            ]
+        ]
+    },
+    {
+        "id": "fcc4b1471edf820f",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/D/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1580,
+        "wires": [
+            [
+                "ba8282ee370fed13"
+            ]
+        ]
+    },
+    {
+        "id": "a5c5bad56e5e5f85",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/E/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1620,
+        "wires": [
+            [
+                "f4481ff918b52732"
+            ]
+        ]
+    },
+    {
+        "id": "df8324dccc80f818",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1700,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "5dd93dc9ee9f26fa"
+            ]
+        ]
+    },
+    {
+        "id": "811db3812a22d5c6",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/F/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1660,
+        "wires": [
+            [
+                "7d096b9d21f7a638"
+            ]
+        ]
+    },
+    {
+        "id": "28af117f0c4a0fa1",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/G/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1700,
+        "wires": [
+            [
+                "df8324dccc80f818"
+            ]
+        ]
+    },
+    {
+        "id": "797b3f47b3c1895f",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/A/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1500,
+        "wires": [
+            [
+                "fb368ec88692b339"
+            ]
+        ]
+    },
+    {
+        "id": "2f2207c810f77bf1",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/H/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1740,
+        "wires": [
+            [
+                "48a010269bbb03c4"
+            ]
+        ]
+    },
+    {
+        "id": "48a010269bbb03c4",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1740,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "5c7222ea65c16643"
+            ]
+        ]
+    },
+    {
+        "id": "c81806b31950afc6",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1540,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "b263f5d7d7271fcb"
+            ]
+        ]
+    },
+    {
+        "id": "fb368ec88692b339",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1500,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "d9a3c0958475ad5f"
+            ]
+        ]
+    },
+    {
+        "id": "71080ef00af6848d",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1780,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "829c3aa2b08ae4f2"
+            ]
+        ]
+    },
+    {
+        "id": "bc37edd46b63872d",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1820,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "f2925147776a07d8"
+            ]
+        ]
+    },
+    {
+        "id": "522158f32b62991a",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/I/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1780,
+        "wires": [
+            [
+                "71080ef00af6848d"
+            ]
+        ]
+    },
+    {
+        "id": "990f24abc1139e86",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/J/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1820,
+        "wires": [
+            [
+                "bc37edd46b63872d"
+            ]
+        ]
+    },
+    {
+        "id": "931e5e11786ac0c9",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/K/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1860,
+        "wires": [
+            [
+                "cd90b6a1b6c69575"
+            ]
+        ]
+    },
+    {
+        "id": "cd90b6a1b6c69575",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1860,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "72ca2490811bb410"
+            ]
+        ]
+    },
+    {
+        "id": "f8cd54fdecbb264a",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1900,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "a40a85eaf7c233fd"
+            ]
+        ]
+    },
+    {
+        "id": "3a15913cb6d8312c",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1940,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "a0b923eebf29f646"
+            ]
+        ]
+    },
+    {
+        "id": "4769313db43b1e8b",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/L/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1900,
+        "wires": [
+            [
+                "f8cd54fdecbb264a"
+            ]
+        ]
+    },
+    {
+        "id": "510f7d2124f9030d",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/M/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1940,
+        "wires": [
+            [
+                "3a15913cb6d8312c"
+            ]
+        ]
+    },
+    {
+        "id": "72aded795ba1f097",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/N/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1980,
+        "wires": [
+            [
+                "80d5bd8ed21f75ae"
+            ]
+        ]
+    },
+    {
+        "id": "80d5bd8ed21f75ae",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1980,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "f9d689441c4bbb5f"
+            ]
+        ]
+    },
+    {
+        "id": "c46e74387e4e069e",
+        "type": "mqtt in",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/O/Input/bool/Motion_Detector",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6f784510beaf1d43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 2020,
+        "wires": [
+            [
+                "eb46c8301791858c"
+            ]
+        ]
+    },
+    {
+        "id": "eb46c8301791858c",
+        "type": "function",
+        "z": "68855751444df877",
+        "name": "funcion vigilancia total",
+        "func": "if(!global.get('estado_vigilancia_total')){\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 2020,
+        "wires": [
+            [
+                "6457ae21dd0c426f",
+                "984a0af76e9f2630"
+            ]
+        ]
+    },
+    {
+        "id": "6457ae21dd0c426f",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/E/Output/bool/Siren",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 820,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "2a7493046d205a9a",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/G/Output/bool/Lights",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 600,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "d9a3c0958475ad5f",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento A",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Movimiento sospechoso en A",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1500,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "b263f5d7d7271fcb",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento B",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "Movimiento sospechoso en B",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1540,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "aef0e257d5111d4f",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento D",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en D",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso en D",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1580,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "b55830e766b19f9b",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento E",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en E",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1620,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "6f9fe4215575e8b6",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento F",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Movimiento sospechoso en F",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1660,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "5dd93dc9ee9f26fa",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento G",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en G",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1700,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "5c7222ea65c16643",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento H",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en H",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1740,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "829c3aa2b08ae4f2",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento I",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en I",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1780,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "f2925147776a07d8",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento J",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en J",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1820,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "72ca2490811bb410",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento K",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en K",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1860,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "a40a85eaf7c233fd",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento L",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en L",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1900,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "a0b923eebf29f646",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento M",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en M",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1940,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "f9d689441c4bbb5f",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento N",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en N",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1980,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "984a0af76e9f2630",
+        "type": "change",
+        "z": "68855751444df877",
+        "name": "Informar movimiento O",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Se detectó movimiento en O",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Movimiento sospechoso detectado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 2020,
+        "wires": [
+            [
+                "1f7c5277c926068e"
+            ]
+        ]
+    },
+    {
+        "id": "1f7c5277c926068e",
+        "type": "ui_toast",
+        "z": "68855751444df877",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1130,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "e48d72e55ef74d5c",
+        "type": "mqtt out",
+        "z": "68855751444df877",
+        "name": "",
+        "topic": "/home/L/Output/bool/Heater",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6f784510beaf1d43",
+        "x": 680,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "6f784510beaf1d43",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c0511ca01e811917",
+        "type": "ui_group",
+        "name": "Vigilancia total",
+        "tab": "e945f18363442f5d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "356098111e9647df",
+        "type": "ui_group",
+        "name": "Iluminar camino baño",
+        "tab": "e945f18363442f5d",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "17067b2c97584bc7",
+        "type": "ui_group",
+        "name": "Despertar",
+        "tab": "e945f18363442f5d",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e945f18363442f5d",
+        "type": "ui_tab",
+        "name": "Acciones especiales",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
